@@ -1,4 +1,4 @@
-const books = [
+const booksFromLocalDataBase = [
     {
         title: 'Harry Potter i kamień filozoficzny',
         category:'Fantasy',
@@ -8,9 +8,10 @@ const books = [
     },
 ]
 
-myFunDisplayBooksInHtml = bookList => {
+myFunRenderBooks = booksList => {
+    bookList.innerHTML = '';
 //descrution mode
-    books.forEach(({title, category, author, year, price}) => {
+    booksFromLocalDataBase.forEach(({title, category, author, year, price}) => {
         bookList.innerHTML += `
         <li>
             <h2>${title}</h2>
@@ -23,5 +24,13 @@ myFunDisplayBooksInHtml = bookList => {
     })
 };
 
-
+myFunFilterBooks = event => {
+    event.preventDefault();
+    const foundBooks = booksFromLocalDataBase.filter(({title}) =>{
+        return title.toLowerCase().includes(inputText.value);
+    });
+    myFunRenderBooks(foundBooks);
+    inputText.focus();
+    inputText.value = '';
+};
 

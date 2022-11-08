@@ -1,7 +1,11 @@
-console.log('test');
+console.log('Start test');
 
 const bookList = document.querySelector('#list');
+const booksForm = document.querySelector('#booksForm');
+const inputText = document.querySelector('[data-name="searchInput"]');
 
-myFunDisplayBooksInHtml(bookList);
+myFunRenderBooks(bookList);
+
+booksForm.addEventListener('submit', myFunFilterBooks)
 
 
