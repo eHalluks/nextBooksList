@@ -1,36 +1,87 @@
+console.log('Test start BOOKS file')
 const booksFromLocalDataBase = [
     {
-        title: 'Harry Potter i kamień filozoficzny',
-        category:'Fantasy',
-        author:'J.K Rowling',
-        year: 1992,
-        price: 49.99
+        id: 0,
+        title: 'JavaScript',
+        category: 'Fantasy',
+        author: 'UNKNOWN',
+        year: 2022,
+        price: 4.99,
     },
-]
+    {
+        id: 0,
+        title: 'Python',
+        category: 'Fantasy',
+        author: 'UNKNOWN',
+        year: 2022,
+        price: 6.99,
+    },
+    {
+        id: 0,
+        title: 'C sharp',
+        category: 'Fantasy',
+        author: 'UNKNOWN',
+        year: 2022,
+        price: 7.99,
+    },
+];
+const tempArr = [];
 
-myFunRenderBooks = booksList => {
-    bookList.innerHTML = '';
-//descrution mode
-    booksFromLocalDataBase.forEach(({title, category, author, year, price}) => {
-        bookList.innerHTML += `
+myFunAddIdToBook = () => {
+    booksFromLocalDataBase.forEach((element, i) => {
+        element.id = i+1;
+    })
+}
+
+myFunRenderBooks = booksOfList => {
+    myFunAddIdToBook();
+    booksList.innerHTML = '';
+    booksOfList.forEach(({id ,title, category, author, year, price}) => {
+        booksList.innerHTML += `
         <li>
             <h2>${title}</h2>
-            <p><strong>Kategoria:</strong> ${category},</p>
-            <p><strong>Autor:</strong> ${author},</p>
-            <p><strong>Rok wydania:</strong> ${year},</p>
-            <p><strong>Cena:</strong> ${price}zł,</p>
-        </li>
-    `
-    })
-};
+            <p><strong>No: </strong>#${id}</p>
+            <p><strong>Author: </strong>${category}</p>
+            <p><strong>Category: </strong>${author}</p>
+            <p><strong>Year: </strong>${year}</p>
+            <p><strong>Price: </strong>${price}zł</p>
+        </li>`
 
+    });
+}
 myFunFilterBooks = event => {
     event.preventDefault();
-    const foundBooks = booksFromLocalDataBase.filter(({title}) =>{
-        return title.toLowerCase().includes(inputText.value);
-    });
+    const foundBooks = booksFromLocalDataBase.filter(({title}) => {
+        return title.toLowerCase().includes(inputText.value.toLowerCase());
+    })
     myFunRenderBooks(foundBooks);
-    inputText.focus();
     inputText.value = '';
+    inputText.focus();
 };
+
+addNewBook = event => {
+    event.preventDefault();
+    addInputValue.forEach(element => {
+        tempArr.push(element.value);
+    })
+    const book = {
+        id: 0,
+        title: tempArr[0],
+        category: tempArr[1],
+        author: tempArr[2],
+        year :Number(tempArr[3]),
+        price: Number(tempArr[4]),
+    }
+    booksFromLocalDataBase.push(book)
+    tempArr.length = 0;
+
+    addInputValue.forEach(element => {
+        element.value = '';
+    });
+    myFunRenderBooks(booksFromLocalDataBase);
+}
+
+myFunInvokeRunRender = () => {
+    myFunRenderBooks(booksFromLocalDataBase);
+}
 

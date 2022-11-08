@@ -1,21 +1,65 @@
-<!DOCTYPE html>
-<html lang='en'>
-    <head>
-        <meta charset='UTF-8'>
-        <title>Title</title>
-    </head>
-    <body>
-    <div>
-        <h1>Books Library</h1>
-        <form id='booksForm'>
-            <div>
-                <input data-name="searchInput" type='text' placeholder='Book title'/>
-                <button type='submit'>Search</button>
-            </div>
-        </form>
-        <ol id='list'></ol>
-    </div>
-    <script src='src/books.js'></script>
-    <script src='src/ui.js'></script>
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books</title>
+</head>
+<style>
+    .wLewo{
+        text-align: right;
+    }
+</style>
+<body>
+<section><div>
+    <h2>Add book</h2>
+    <form id="newBook">
+        <table>
+            <tr>
+                <td class="wLewo"><strong>Title: </strong></td>
+                <td><input data-name="addInputValue" type="text"></td>
+            </tr>
+            <tr>
+                <td class="wLewo"><strong>Author: </strong></td>
+                <td><input data-name="addInputValue" type="text"></td>
+            </tr>
+            <tr>
+                <td class="wLewo"><strong>Category: </strong></td>
+                <td><input data-name="addInputValue" type="text"></td>
+            </tr>
+            <tr>
+                <td class="wLewo"><strong>Year: </strong></td>
+                <td><input data-name="addInputValue" type="text"></td>
+            </tr>
+            <tr>
+                <td class="wLewo"><strong>Price: </strong></td>
+                <td><input data-name="addInputValue" type="text"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+
+
+        </table>
+        <div>
+
+        </div>
+    </form>
+</div></section>
+<section><div>
+    <h1>Book Library</h1>
+    <form id="booksForm">
+        <div>
+            <input data-name="input-text" type="text" placeholder="Book title">
+            <button type="submit">Serach</button>
+        </div>
+    </form>
+    <ol id="list"></ol>
+</div></section>
+<script src="src/books.js"></script>
+<script src="src/ui.js"></script>
+</body>
 </html>
