@@ -27,8 +27,11 @@ const booksFromLocalDataBase = [
 ];
 const tempArr = [];
 
+//ES9 - if variable -eq (undefined || null || false) you can use operator ?? in re
+const bookLibrary = JSON.parse(localStorage.getItem('books')) ?? booksFromLocalDataBase;
+
 myFunAddIdToBook = () => {
-    booksFromLocalDataBase.forEach((element, i) => {
+    bookLibrary.forEach((element, i) => {
         element.id = i+1;
     })
 }
@@ -45,14 +48,14 @@ myFunRenderBooks = booksOfList => {
                 <p><strong>Author: </strong>${category}</p>
                 <p><strong>Category: </strong>${author}</p>
                 <p><strong>Year: </strong>${year}</p>
-                <p><strong>Price: </strong>${price}zł</p>
+                <p><strong>Price: </strong>${price} PLN</p>
             </li>
         </div>`
     });
 }
 myFunFilterBooks = event => {
     event.preventDefault();
-    const foundBooks = booksFromLocalDataBase.filter(({title}) => {
+    const foundBooks = bookLibrary.filter(({title}) => {
         return title.toLowerCase().includes(inputText.value.toLowerCase());
     })
     myFunRenderBooks(foundBooks);
@@ -73,16 +76,17 @@ addNewBook = event => {
         year :Number(tempArr[3]),
         price: Number(tempArr[4]),
     }
-    booksFromLocalDataBase.push(book)
+    bookLibrary.push(book);
+    localStorage.setItem('books',JSON.stringify(bookLibrary));
     tempArr.length = 0;
 
     addInputValue.forEach(element => {
         element.value = '';
     });
-    myFunRenderBooks(booksFromLocalDataBase);
+    myFunRenderBooks(bookLibrary);
 }
 
 myFunInvokeRunRender = () => {
-    myFunRenderBooks(booksFromLocalDataBase);
+    myFunRenderBooks(bookLibrary);
 }
 
