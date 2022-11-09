@@ -38,15 +38,16 @@ myFunRenderBooks = booksOfList => {
     booksList.innerHTML = '';
     booksOfList.forEach(({id ,title, category, author, year, price}) => {
         booksList.innerHTML += `
-        <li>
-            <h2>${title}</h2>
-            <p><strong>No: </strong>#${id}</p>
-            <p><strong>Author: </strong>${category}</p>
-            <p><strong>Category: </strong>${author}</p>
-            <p><strong>Year: </strong>${year}</p>
-            <p><strong>Price: </strong>${price}zł</p>
-        </li>`
-
+        <div class="grid-item">
+            <li>
+                <h2>${title}</h2>
+                <p><strong>No: </strong>#${id}</p>
+                <p><strong>Author: </strong>${category}</p>
+                <p><strong>Category: </strong>${author}</p>
+                <p><strong>Year: </strong>${year}</p>
+                <p><strong>Price: </strong>${price}zł</p>
+            </li>
+        </div>`
     });
 }
 myFunFilterBooks = event => {
